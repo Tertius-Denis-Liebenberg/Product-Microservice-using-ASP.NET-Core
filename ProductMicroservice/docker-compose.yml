@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  productmicroservice:
+    image: ${DOCKER_REGISTRY-}productmicroservice
+    build:
+      context: .
+      dockerfile: ProductMicroservice/Dockerfile
+  myproductmicroservice:
+    image: myproductmicroservice:latest
+    build: .
+    environment:
+      - ENV_VAR=value
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
